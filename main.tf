@@ -53,7 +53,7 @@ resource "aws_route_table" "public_rt" {
 
  	route {
  		cidr_block = var.cidr-public-subnet
- 		gateway_id = var.igw-id
+ 		gateway_id = aws_internet_gateway.ig.id
  	}
  	tags = {
  		Name = "tf-public-rt"
