@@ -52,7 +52,7 @@ resource "aws_route_table" "public_rt" {
  	vpc_id = aws_vpc.vpc.id
 
  	route {
- 		cidr_block = var.cidr-public-subnet
+ 		cidr_block = var.cidr-public-rt
  		gateway_id = aws_internet_gateway.ig.id
  	}
  	tags = {
