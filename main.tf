@@ -16,7 +16,7 @@ resource "aws_vpc" "vpc" {
 
 # Create Internet Gateway and attach to VPC
 resource "aws_internet_gateway" "ig" {
-	vpc_id = var.vpc-id
+	vpc_id = aws_vpc.vpc.id
 
 	tags = {
 		Name = "tech254-chiedozie-igw-tf"
@@ -25,7 +25,7 @@ resource "aws_internet_gateway" "ig" {
 
 # Create Public Subnet
 resource "aws_subnet" "public_subnet" {
-    vpc_id                  = var.vpc-id
+    vpc_id                  = aws_vpc.vpc.id
  	cidr_block              = var.cidr-public-subnet
  	availability_zone       = "eu-west-1b"
  	map_public_ip_on_launch = true
@@ -37,7 +37,7 @@ resource "aws_subnet" "public_subnet" {
 
 # Create Private Subnet
 resource "aws_subnet" "private_subnet" {
- 	vpc_id                  = var.vpc-id
+ 	vpc_id                  = aws_vpc.vpc.id
  	cidr_block              = var.cidr-private-subnet
  	availability_zone       = "eu-west-1c"
  	map_public_ip_on_launch = false
@@ -49,7 +49,7 @@ resource "aws_subnet" "private_subnet" {
 
 # Create Route Table for Public Subnet
 resource "aws_route_table" "public_rt" {
- 	vpc_id = var.vpc-id
+ 	vpc_id = aws_vpc.vpc.id
 
  	route {
  		cidr_block = var.cidr-public-subnet
